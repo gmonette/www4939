@@ -1,0 +1,830 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={MATH 4939 Questions},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\title{MATH 4939 Questions}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  In order to assess factors related to reckless driving behaviors,
+  investigators ran a study in which observers at different
+  intersections with a stop sign recorded the number of cars that did
+  not stop properly along with various information on each violator,
+  including gender of the driver, type of car (sedan, sports utility,
+  mini-van, wagon, truck, other), and approximate age of the driver
+  (under 30, 30-40, 40-50, 50+). Pooling information from several
+  intersections and for different observers, investigators recorded the
+  number of violators in each category. \newline  Describe a generalized
+  linear model for analyzing these data (specify a reasonable, possibly
+  non-linear, model and its transformation to linear form as well as a
+  conditional distribution and link function) and outline a specific
+  approach for assessing the following questions of interest using
+  frequentist methods: (1) is gender an important predictor? (2) is type
+  of car an important predictor, and if so which types are predictive of
+  a greater frequency of violations? (3) is there a trend with age in
+  the frequency of violations? \vspace{0px}
+\item
+  In marketing research, it is widely believed that subliminal messages
+  in advertisements can be effective in improving a consumer's
+  impression of a product. To test whether the type and frequency of the
+  subliminal message has an impact, investigators ran a study in which
+  they enrolled male and female graduate students. Study subjects were
+  all shown an outwardly-identical taped advertisement for a soft drink
+  and then asked to rank their impression of the soft drink after
+  watching the tape on a scale from 1-5 (1=strongly negative, 2=mildly
+  negative, 3=no opinion, 4=mildly positive, 5=strongly positive). Tapes
+  varied in the type of subliminal message (1=none, 2=attractive female
+  face, 3=attractive male face) and (for tapes with a subliminal
+  message) the frequency (1=low, 2=medium, 3=high). \newline Describe a
+  regression model for relating gender, type of subliminal message, and
+  frequency to an individual's impression. Describe the specifics of a
+  Bayesian approach for addressing the following questions of interest
+  to the investigator: (1) do subliminal messages have an effect
+  overall? (2) does this effect vary depending on the gender of the
+  observer? (3) does the effect depend on the frequency? and (4) do
+  males and females respond differently depending on the type of
+  subliminal message? Detail the prior used, the form of the regression
+  model, and the likelihood. Provide an outline of the method used for
+  posterior computation and inferences on the above questions of
+  interest. \vspace{0px}
+\item
+  Suppose that a random variable \(Y\) has a Poisson distribution with
+  mean \(\lambda\) were
+  \(ln(\lambda) = \beta_0 + \beta_1 X_1 + \beta_2 X_2\). Assuming that
+  \(X_2\) is not constant and that \(\beta_2 \ne 0\), show that \(Y\)
+  does not have a Poisson distribution if one fits a model using only
+  \(X_1\). \vspace{0px}
+\item
+  Uterine fibroids are a common reproductive tract tumor. To study
+  factors related to fibroid incidence (that is, the rate of onset for
+  women who do not have fibroids), women aged 20-30 who did not have
+  fibroids at a baseline examination were enrolled in a prospective
+  study. These women were then given a screening examination
+  approximately every 5 years (though the specific ages at examination
+  varied) to assess whether fibroids had yet developed. Each woman was
+  followed for 15 years (3 examinations) or until she either developed
+  fibroids or dropped out of the study. Various information was
+  collected for each women, including race (white, black, other), age at
+  menarche, age at entry into the study, age at each examination, and
+  whether the woman was a smoker. \newline Assuming that fibroids do not
+  go away once they have developed, describe a regression model for
+  these data that allows fibroid incidence to vary with age and other
+  factors. Show the observed data likelihood under this regression
+  model, and develop a Bayesian approach for estimating age-specific
+  fibroid incidence for women in different groups. Detail the prior used
+  and the form of the posterior. Outline an approach for posterior
+  computation and describe specifically how you obtain point and
+  interval estimates for the probability of developing fibroids by a
+  given age for women in different groups. \vspace{0px}
+\item
+  For adults who sailed on the Titanic on its fateful voyage, the odds
+  ratio between gender (female, male) and survival (yes, no) was 11.4.
+  What is wrong with the interpretation, ``The probability of survival
+  for females was 11.4 times that for males.''
+\end{enumerate}
+
+\vspace{0px}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  \emph{(continued from previous question)} When would the quoted
+  interpretation be approximately correct? Why?
+\end{enumerate}
+
+\vspace{0px}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\item
+  \emph{(continued from previous question)} The odds of survival for
+  females equaled 2.9. For each gender, find the proportion who
+  survived. \vspace{0px}
+\item
+  Explain what is meant by overdispersion, and explain how it can occur
+  for Poisson generalized linear models for count data. \vspace{0px}
+\item
+  Explain two ways in which the generalized linear model extends the
+  ordinary regression model that is commonly used for quantitative
+  response variables. \vspace{0px}
+\item
+  Each of 100 multiple-choice questions on an exam has five possible
+  answers but one correct response. For each question, a student
+  randomly selects one response as the answer. Specify the probability
+  distribution of the student's number of correct answers on the exam,
+  identifying the parameter(s) for that distribution. Would it be
+  surprising if the student made at least 50 correct responses? Explain
+  your reasoning. \vspace{0px}
+\item
+  Suppose \texttt{y}, \texttt{x}, and \texttt{z} are numerical variables
+  in the R data frame \texttt{dd}. \newline Explain the difference
+  between a linear model fitted with the formula
+  \texttt{y\ \textasciitilde{}\ x*z} in comparison with the formula
+  \texttt{y\ \textasciitilde{}\ I(x*z)}. \vspace{0px}
+\item
+  There is a lab test for a rare disease D that has a specificity of .98
+  and a sensitivity of .95. Suppose the prevalence of the disease is
+  .01\%. Explain how, if one thinks of the lab test as a hypothesis test
+  for the null hypothesis of no disease, a positive result produces a
+  p-value of 0.01. \vspace{0px}
+\item
+  \emph{(continued from previous question)} If someone selected at
+  random (for example if the test is used to screen for the disease) is
+  given the test and gets a positive result, what is the probability
+  that they have the disease? \vspace{0px}
+\item
+  An article states that the PSA blood test for detecting prostate
+  cancer stated that, of men who had this disease, the test fails to
+  detect prostate cancer in 1 in 4, and, of men who do not have it,
+  approximately 2/3 received false positive results. Let \(D\) (\(D^c\))
+  denote the event of having (not having) prostate cancer and let
+  \(Pos\) (\(Neg\)) denote a positive (negative) test result. What is
+  the sensitivity and specificity of this test? (from Agresti, 2007)
+  \vspace{0px}
+\item
+  \emph{(continued from previous question)} Of men who take the PSA
+  test, 1\% have the disease. Find the cell probabilities in the
+  \(2 \times 2\) table for the joint distribution for having (not
+  having) the disease versus a positive or negative test result.
+  \vspace{0px}
+\item
+  \emph{(continued from previous question)} Find the probability of
+  having prostate cancer given a positive test result and find the
+  probability of not having the disease given a negative test result.
+  \vspace{0px}
+\item
+  A lab test for a rare disease D has a specificity of .95 and a
+  sensitivity of .95. Suppose the prevalence of the disease is .01\%.
+  What proportion of the time is the test in error? \vspace{0px}
+\item
+  \emph{(continued from previous question)} Given a positive test
+  result, what is probability of error? \vspace{0px}
+\item
+  \emph{(continued from previous question)} Given a negative test
+  result, what is probability of error? \vspace{0px}
+\item
+  \emph{(continued from previous question)} How do you reconcile the 3
+  preceding results? \vspace{0px}
+\item
+  A British study in 1998 report that, of smokers who get lung cancer,
+  ``women were 1.7 times more vulnerable than men to get small-cell lung
+  cancer''. What kind of statistic is the figure `1.7' reported here?
+  (Agresti, 2007) \vspace{0px}
+\item
+  A National Cancer Institute study about tamoxifen and breast cancer
+  reported in 1998 that the women taking the drug were 45\% less likely
+  to experience invasive breast cancer compared with the women taking
+  placebo. Find the relative risk for (i) those taking the drug compared
+  to those taking placebo, (ii) those taking placebo compared to those
+  taking the drug. \vspace{0px}
+\item
+  In the United States, data reported in 1993 indicates that the annual
+  probability that a woman over the age of 35 dies of lung cancer equals
+  0.001304 for current smokers and 0.000121 for nonsmokers. Calculate
+  and interpret the difference of proportions, the relative risk and the
+  odds ratio. Which is more informative? Why? (Agresti, 2007)
+  \vspace{0px}
+\item
+  \emph{(continued from previous question)} Are the odds ratio and
+  relative risk similar or dissimilar? Why? \vspace{0px}
+\item
+  With a \(2 \times 2\) table what is the effect of interchanging two
+  rows on the odds ratio? On the log-odds ratio? \vspace{0px}
+\item
+  AVP: Find an approximate 95\% confidence intererval for
+  \(\beta_{XXXX}\). Show how you obtained it. You don't need to describe
+  the process in detail but show evidence of the process you used.
+  \vspace{0px}
+\item
+  \emph{(continued from previous question)} Anova anova show the null
+  model and the alternative model for each line. You may use R's linear
+  model formula notation to define the models. \vspace{0px}
+\item
+  \emph{(continued from previous question)} Linear combination question.
+  \vspace{0px}
+\item
+  The eagle question with the gamma. Include information on the gamma
+  \newpage \vspace{0px}
+\item
+  23Q \vspace{0px}
+\item
+  23Q \vspace{0px}
+\item
+  Beta space question \vspace{0px}
+\item
+  The following is output from an script in R using the Prestige data in
+  the `car' package: \newline \includegraphics{m4330/q22a.PNG}
+  \newline and this is the plot generated by the script:
+  \newline \includegraphics{m4330/q22b.PNG} \newline If you have the
+  information to construct an approximate 95\% confidence interval for
+  the coefficient of `education' controlling for `type', do so. Show how
+  you constructed the interval. You do not need to explain how you
+  constructed it in detail as long as it is obvious from your work on
+  the exam. If you do not have the information, explain why not.
+  \vspace{0px}
+\item
+  \emph{(continued from previous question)} What is the difference in
+  predicted income from this model for someone with 12 years of
+  education in a professional occupation versus a white collar
+  occupation? \vspace{0px}
+\item
+  Consider the problem of imputing a grade for a missed mid-term mark
+  from a student's performance on a final exam. Suppose a professor is
+  considering three possibilities: 1) Use the student's z-score on the
+  final exam to impute the z-score on the mid-term, 2) perform a linear
+  regression of mid-term grades on the final exam grade and impute the
+  mid-term grade by using the predicted mid-term grade, and 3) use a
+  linear regression of the final exam grade on the mid-term grade and
+  impute the mid-term grade that would have predicted the student's
+  final exam grade. \newline Which of these three methods would be
+  advantageous for a student who has a very high grade on the final
+  exam? Which would be advantageous for a student who has a very low
+  grade on the final exam? Clearly show the reasoning behind your
+  answer. \vspace{0px}
+\item
+  Explain what is meant by the Hauck-Donner phenomenon. How does it
+  affect the practice of logistic regression? \vspace{0px}
+\item
+  In the early stages of an epidemic, the number of new cases grows
+  exponentially. Suppose that the expected number of cases on day
+  \(t_i\) is modelled as \(\gamma e^{\delta t_i}\). Specify a GLM that
+  you could use to analyze data in which the response is the number of
+  new cases on a number of specific days, for example: days 5, 6, 10,
+  12, 20 and 23. Describe in detail the transformation of the model to
+  linear form and the interpretation of the original parameters above
+  and of the linear parameters of the model. \vspace{0px}
+\item
+  Let \(Y\) be number of fatal accidents on a day in Toronto. Suppose
+  the expected number of fatal car accidents depends on a number of
+  variables and that, if all of these variables were taken into account,
+  the conditional distribution of \(Y\) would be Poisson. Show that,
+  assuming that the variables are not all constant, the unconditional
+  distribution of \(Y\) itself is overdispersed relative to that of a
+  Poisson distribution. \vspace{0px}
+\item
+  Give a real world example of three variables, \(X, Y,\) and \(Z\), for
+  which we would expect \(X\) and \(Y\) to be marginally associated but
+  conditionally independent controlling for \(Z\). \vspace{0px}
+\item
+  The~Cowles~data frame has 1421 rows and 4 columns. These data come
+  from a study of the personality determinants of volunteering for
+  psychological research. Neuroticism (neuro) is classified in three
+  levels: low, medium and high. Extraversion (extra) is measured on a
+  scale that ranges from 1 to 25. The purpose of the study is to explore
+  some personality predictors of the willingness to volunteer and how
+  the prediction differs between men and women. This is some output from
+  an R script: \newline \includegraphics{m4330/q25a.PNG} \newline What
+  is the predicted probability of volunteering for a male with high
+  `neuro' and extraversion equal to 20? \vspace{0px}
+\item
+  \emph{(continued from previous question)} For each row of the
+  following Anova table specify both the null hypothesis and the
+  alternative hypothesis being tested. You may use R's linear model
+  formulas to express the hypotheses or you may use the parameters of
+  the model provided they are named in a way that is
+  clear.\newline \includegraphics{m4330/q25b.PNG} \newline \vspace{0px}
+\item
+  \emph{(continued from previous question)} The following is an effect
+  plot produced by the `effects' package.
+  \newline \includegraphics{m4330/q25c.PNG} \newline  What are the main
+  reasons that the confidence bands are wider for some combinations of
+  neuro and sex than for others? \vspace{0px}
+\item
+  Sally Clark was convicted of murder of her two children who died with
+  no signs of illness or trauma on the strength of statistical evidence
+  that claimed that assuming the `null hypothesis' that she is innocent,
+  the probability of 2 deaths occuring due to the only known
+  explanation, sudden infant death syndrome, was extremely small. In
+  testimony, Sir Roy Meadow claimed the probability to be 1 in 73
+  million but better estimates would put it at a maximum of 1 in
+  100,000.
+
+  \par
+
+  Explain whether 0.00001 can be considered a p-value for assessing the
+  hypothesis that Sally Clark is innocent. Discuss whether there are
+  other ways of assessing the probability of her guilt? Work out a rough
+  calculation based on reasonable guesses for the result of such a
+  calculation. \vspace{0px}
+\item
+  Discuss how it could be possible for a regression with two linear
+  predictors to produce two different final models when using forward
+  stepwise versus backward stepwise variable selection algorithms.
+  Explain how a confidence region for the coefficients of the two linear
+  predictors is related to forward and backward stepwise selection
+  \vspace{0px}
+\item
+  A survey of students taking a large course showed (this is true) that
+  students who viewed the recorded videos of the lectures many times
+  performed less well on the final exam than students who viewed the
+  videos fewer times. Upon discovering this study, your professor
+  announces that they will discontinue recording the lectures because,
+  the professor says, there is evidence that the videos cause students
+  to do perform more poorly on courses. Comment on the professor's
+  reasoning using concepts we have studied in this course. \vspace{0px}
+\item
+  Choose a possible confounding factor and use a Paik-Agresti diagram to
+  show how controlling for this confounding factor could reverse the
+  direction of association between the frequency of video viewing and
+  performance on the course. \vspace{0px}
+\item
+  What output will the following R script produce? Explain briefly why.
+
+  \vspace{0px}
+\item
+  What output will the following R script produce? Explain briefly why.
+
+  \vspace{0px}
+\item
+  Let x be defined as:
+
+  Write an R function that would turn \texttt{x} into a factor whose
+  ordering corresponds to the numerical ordering of \texttt{x}.
+  \vspace{0px}
+\item
+  In R, let \texttt{x\ \textless{}-\ 1:5}. What output would
+  \texttt{x{[}NA{]}} produce? What output would
+  \texttt{x{[}NA\_real\_{]}} produce? Describe the reason for the
+  difference, if any. \vspace{0px}
+\item
+  In R, describe the result of subsetting a vector with positive
+  integers, with negative integers, with a logical vector, or with a
+  character vector? \vspace{0px}
+\item
+  In R, what's the difference between~{[},~{[}{[}, and~\$~when applied
+  to a list? \vspace{0px}
+\item
+  In R, when subsetting with {[}, when should you use~drop = FALSE?
+  Include arrays and factors in your discussion. \vspace{0px}
+\item
+  In R, If~\texttt{x}~is a matrix, what
+  does~\texttt{x{[}{]}\ \textless{}-\ 0}~do? How is it different
+  from~\texttt{x\ \textless{}-\ 0}? \vspace{0px}
+\item
+  In R, how can you use a named vector to relabel a categorical
+  variable? \vspace{0px}
+\item
+  In R, the data frame \texttt{mtcars} has 32 rows and 11 variables of
+  which \texttt{cyl} is a variable recording the number of cylinders in
+  each type of car. Fix each of the following common data frame
+  subsetting errors in R: \newline\newline
+\end{enumerate}
+
+\texttt{mtcars{[}mtcars\$cyl\ =\ 4,\ {]}}\newline\newline\newline\newline
+\texttt{mtcars{[}-1:4,\ {]}}\newline\newline\newline\newline
+\texttt{mtcars{[}mtcars\$cyl\ \textless{}=\ 5{]}}\newline\newline\newline\newline
+\texttt{mtcars{[}mtcars\$cyl\ ==\ 4\ \textbar{}\ 6,\ {]}}\newline\newline\newline\newline
+
+\vspace{0px}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{56}
+\item
+  In R, if mtcars is a data frame, why does mtcars{[}1:20{]} return an
+  error? How does it differ from the similar mtcars{[}1:20, {]}?
+  \vspace{0px}
+\item
+  In R, if df is a data frame, what does df{[}is.na(df){]} \textless- 0
+  do? How does it work? \vspace{0px}
+\item
+  Create the vector (20,19, \ldots{} ,2,1) in R. \vspace{0px}
+\item
+  Create the vector (1,2,3, \ldots{} ,19,20,19,18, \ldots{} ,2,1) in R.
+  \vspace{0px}
+\item
+  Create the vector (4,4, \ldots{} ,4,6,6, \ldots{} ,6,3,3, \ldots{} ,3)
+  in R, where there are 10 occurrences of 4, 20 of 6 and 30 of 3.
+  \vspace{0px}
+\item
+  Write an expression in R to calculate the following
+  \(\sum_{i=10}^{100} (i^3 + 4i^2)\) \vspace{0px}
+\item
+  Generate in R a vector of 30 labels: `label 1', `label 2', \ldots{}
+  `label 30' \vspace{0px}
+\item
+  Let \texttt{y\ \textless{}-\ sample(1000,\ 30,\ replace\ =\ TRUE)}.
+  Write an expression in R to determine how many elements of \texttt{y}
+  are divisible by 2. \vspace{0px}
+\item
+  Let \texttt{y\ \textless{}-\ sample(1000,\ 30,\ replace\ =\ TRUE)}.
+  Write an expression in R to determine how many elements of \texttt{y}
+  are divisible by 2. \vspace{0px}
+\item
+  Let \texttt{y\ \textless{}-\ sample(1000,\ 30,\ replace\ =\ TRUE)}.
+  Write an expression in R to determine how many elements of \texttt{y}
+  are within 200 of the maximum value. \vspace{0px}
+\item
+  Let \texttt{y\ \textless{}-\ sample(1000,\ 30,\ replace\ =\ TRUE)}.
+  Write an expression in R to determine how many elements of \texttt{y}
+  are less than the previous element. \vspace{0px}
+\item
+  Let \texttt{y\ \textless{}-\ sample(1000,\ 30,\ replace\ =\ TRUE)}.
+  Write an expression in R to determine how many elements of \texttt{y}
+  are an exact square. \vspace{0px}
+\item
+  Suppose data for a variable in R representing dollars has been entered
+  in a variety of formats: `\$1,000.00',`1000.00',`\$1'. Write a
+  function in R that transforms the variable to a numeric variable in
+  dollars to the nearest cent. \vspace{0px}
+\item
+  Write a function in R that takes a character string and collapses
+  multiple adjoining blanks to a single blank. \vspace{0px}
+\item
+  Use the site Gapminder.org to download at least three longitudinal
+  variables into separate data sets. Merge the data sets into one for
+  which each row represents one country and year and contains the values
+  of each of the three variables you downloaded. \vspace{0px}
+\item
+  Write a function in R that removes from a data frame every variable
+  whose name starts with the letter `X' and ends in a number.
+  \vspace{0px}
+\item
+  Write R code to create a 6 by 10 matrix of random integers in R as
+  follows:
+
+  Write a function to find the number of entries in each row that are
+  greater than 4. \vspace{0px}
+\item
+  Let \texttt{mat} be a matrix of integers in R. Write a function to
+  find how many rows have exactly two instances of the number 7.
+  \vspace{0px}
+\item
+  Describe the difference in R between
+  \texttt{paste(x,\ y,\ sep\ =\ \textquotesingle{}:\textquotesingle{})}
+  and
+  \texttt{paste(x,\ y,\ collapse\ =\ \textquotesingle{}:\textquotesingle{})}
+  \vspace{0px}
+\item
+  Using the \texttt{hs} data set in the spida2 package, create a plot
+  with two panels showing histograms displaying the distribution of
+  school sizes in the Public and in the Catholic sectors. Use the
+  functions \texttt{capply} and \texttt{up} in the spida2 package. You
+  may also use any other approach to compare with the use of
+  \texttt{capply} and \texttt{up}. \vspace{0px}
+\item
+  Using the \texttt{hs} data set in the spida2 package, create a plot
+  with two panels showing histograms displaying the distribution of
+  sample sizes in each school in the Public and in the Catholic sectors.
+  Use the functions \texttt{capply} and \texttt{up} in the spida2
+  package. You may also use any other approach to compare with the use
+  of \texttt{capply} and \texttt{up}. \vspace{0px}
+\item
+  Using the \texttt{hs} data set in the spida2 package, create a plot
+  with two panels showing scatterplots displaying the relationship
+  between mean mathach and mean ses in each school in the Public and in
+  the Catholic sectors. Explore reasonable transformations and
+  regression lines: linear and non-parametric in the plots. Use the
+  functions \texttt{capply} and \texttt{up} in the spida2 package. You
+  may also use any other approach to compare with the use of
+  \texttt{capply} and \texttt{up}. \vspace{0px}
+\item
+  Describe the difference in R between a `generic function' and a
+  method. \vspace{0px}
+\item
+  What is wrong with the following claim: ``Data show that income and
+  marriage have a high positive correlation. Therefore, your earnings
+  will increase if you get married.'' \vspace{0px}
+\item
+  What is wrong with the following claim: ``Data show that as the number
+  of fires increase, so does the number of fire fighters. Therefore, to
+  cut down on fires, you should reduce the number of fire fighters.''
+  \vspace{0px}
+\item
+  What is wrong with the following claim: ``Data show that people who
+  hurry tend to be late to their meetings. Don't hurry, or you'll be
+  late.'' \vspace{0px}
+\item
+  A baseball batter Tim has a better batting average than his teammate
+  Frank. However, someone notices that Frank has a better batting
+  average than Tim against both right-handed and left-handed pitchers.
+  How can this happen? Present your answer as a hypothetical table and
+  in a Paik diagram. \vspace{0px}
+\item
+  Discuss whether you should use the aggregate (marginal) or the
+  segregated (conditional) data to attempt to determine the true effect
+  in the following situation: There are two treatments used on kidney
+  stones: Treatment A and Treatment B. Doctors are more likely to use
+  Treatment A on large (and therefore, more severe) stones and more
+  likely to use Treatment B on small stones. Should a patient who
+  doesn't know the size of his or her stone examine the general
+  population data, or the stone size-specific data when determining
+  which treatment will be more effective? Why? Draw a Paik diagram if it
+  helps to make your point more clearly. \vspace{0px}
+\item
+  Discuss whether you should use the aggregate (marginal) or the
+  segregated (conditional) data to attempt to determine the true effect
+  in the following situation: There are two doctors in a small town.
+  Each has performed 100 surgeries in his career, which are of two
+  types: one very difficult surgery and one very easy surgery. The first
+  doctor performs the easy surgery much more often than the difficult
+  surgery and the second doctor performs the difficult surgery more
+  often than the easy surgery. You need surgery, but you do not know
+  whether your case is easy or difficult. Should you consult the success
+  rate of each doctor over all cases, or should you consult their
+  success rates for the easy and difficult cases separately, to maximize
+  the chance of a successful surgery? Why? \vspace{0px}
+\item
+  Discuss whether you should use the aggregate (marginal) or the
+  segregated (conditional) data to attempt to determine the true effect
+  in the following situation: In a study of a group of male 50 to
+  55-year-old long-time smokers, researchers compared a group of heavy
+  smokers with matched group (same age range, sex and similar
+  socioeconomic and environmental backgrounds) of light smokers. It was
+  found that lung function was worse in the group of heavy smokers than
+  in the group of light smokers. The researchers also measured the
+  amount of tar deposit in the lungs of the subjects and classified
+  subjects as having heavy or light tar deposits. Would you get a better
+  indication of the effect of smoking by comparing the aggregated data
+  for the two groups or by comparing the tar level specific data? Why?
+  \vspace{0px}
+\item
+  When interpreting a study that purports to show a relationship between
+  two variables, what do you think are the three most important
+  questions that you should ask? Discuss as succinctly as you can the
+  consequences of the answers to those questions. \vspace{0px}
+\item
+  R. A. Fisher insisted that causal inference was impossible in the
+  absence of an experiment with random assignment to a `treatment'
+  variable. Discuss why Fisher's position could be considered correct
+  but why it may be considered impractical? \vspace{0px}
+\item
+  Give an example of a situation in which we would be interested in
+  predictive inference and an example in which we would be interested in
+  causal inference. \vspace{0px}
+\item
+  Here are some fictitious data on the rate of complications for
+  appendectomies performed at University Hospital, a large urban
+  teaching and research hospital, and in County Hospital, a small-town
+  hospital: at University Hospital there were 800 cases with 100
+  (12.5\%) resulting in complication and at County Hospital there were
+  200 cases resulting in 5 (10\%) complications. The p-value for a test
+  of the hypothesis that there is no difference in the rate at the two
+  hospitals is 0.0037. Suppose that appendectomies can be classified as
+  high risk or low risk and that the high risk cases tend to be directed
+  disproportionately to University Hospital instead of County Hospital.
+  Construct two hypothetical tables, one for each level of risk, and
+  draw a Paik diagram that shows how it is possible for both high- and
+  low-risk patients to have a lower probability of complications at
+  University Hospital than at County Hospital, although, overall the
+  probability of complications is higher at University Hospital than at
+  County Hospital. \vspace{0px}
+\item
+  Suppose a test for glaucoma has a sensitivity of .95 and a specificity
+  of .90. You receive the test as a routine test on a regular visit to
+  your optometrist. The prevalence of glaucoma in your age, ethnic and
+  gender group among people who have not been previously diagnosed is 1
+  per 100. The test, alas, is positive. Use a natural frequency table to
+  find the probability that you have glaucoma given the positive test
+  result. \vspace{0px}
+\item
+  A group of major medical journals are now requiring that all authors
+  who intend to publish in their journal must preregister their
+  experimental designs and their intended analyses for all the clinical
+  endpoints (responses) they intend to report before obtaining data if
+  they intend to publish their results in their journal. Authors must
+  also agree to publish their findings whether the results achieve
+  statistical significance or not. In what ways does this policy
+  contribute to mitigating lack of reproducibility? \vspace{0px}
+\item
+  A group of major medical journals are now requiring that all authors
+  who intend to publish in their journal must preregister their
+  experimental designs and their intended analyses for all the clinical
+  endpoints (responses) they intend to report before obtaining data if
+  they intend to publish their results in their journal. Authors must
+  also agree to publish their findings whether the results achieve
+  statistical significance or not. In what ways does this policy
+  contribute to mitigating lack of reproducibility? \vspace{0px}
+\item
+  A study investigated whether there was a higher risk of complications
+  when women gave birth at home with the assistance of a midwife instead
+  of giving birth in a maternity ward in a hospital. Of 400 women who
+  chose to give birth at home 20 had complications and of 2,000 women
+  who gave birth in a hospital 200 had complications. Do you think that
+  this is an experimental study or an observational study? Why?
+  \vspace{0px}
+\item
+  (continued from the previous question) The data suggest that it is
+  safer (in the sense of a lower rate of complications) to give birth at
+  home than to give birth in the hospital. Discuss whether this implies
+  that a woman should consider giving birth at home in order to reduce
+  her risk of complications. Identify at least one plausible confounding
+  factor and one plausible mediating factor that could partly explain
+  the results of the study \vspace{0px}
+\item
+  (continued from the previous question) Choose a possible confounding
+  factor and use a Paik diagram to show how controlling for this
+  confounding factor could reverse the direction of association between
+  the rate of complications and the location of birth: home or hospital.
+  \vspace{0px}
+\item
+  This graph shows the mean verbal and mean math scores on the SAT test
+  in each of the 50 states of the US.
+  \newline\nopagebreak \includegraphics{m4939/verbal_math.PNG}
+  \newline\nopagebreak Make an intelligent guess of the correlation
+  between these two variables. Show the basis for your guess -- perhaps
+  by drawing an appropriate geometric figure on the graph above.
+  \vspace{0px}
+\item
+  Suppose you were to read about a study based on a random survey of
+  Ontario medical records that shows that smokers have twice as high a
+  risk of kidney disease as non-smokers. Is it reasonable to conclude
+  that smoking causes a higher risk of kidney disease? Why or why not?
+  \vspace{0px}
+\item
+  The following XKCD cartoon shows two statisticians interpreting the
+  same data: one who uses a frequentist approach unquestioningly and one
+  who uses a Bayesian approach.
+  \newline\nopagebreak \includegraphics{m4939/explode.PNG}\newline\nopagebreak Make
+  some reasonable assumptions, stating them explicitly, and calculate a
+  reasonable value for the Bayesian statistician's posterior probability
+  that the sun has exploded. Discuss why there is a difference between
+  the `p-value' of 0.027 and the Bayesian posterior probability. Under
+  what circumstances would you expect a p-value to be close to a
+  posterior probability? \vspace{0px}
+\item
+  Which of the following R expressions result in the following output?
+  \newline\newline \texttt{{[}1{]}\ \ 8} \newline\newline (Write `Y' for
+  yes, `N' for no, and `D' or blank for `do not know'. +1 for a correct
+  answer, -1 for a wrong answer and 0 for `D')\newline\newline \_\_\_\_
+  \texttt{"+"(5,3)}\newline\newline \_\_\_\_
+  \texttt{"/"(16,2)}\newline\newline \_\_\_\_
+  \texttt{2\^{}3}\newline\newline \_\_\_\_
+  \texttt{4\ +\ 4}\newline\newline \_\_\_\_ \texttt{"\^{}"(3,2)}
+\end{enumerate}
+
+\vspace{0px}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{100}
+\tightlist
+\item
+  Suppose we run this command: \newline\newline
+  \texttt{a\ \textless{}-\ matrix(1:8,\ rnow\ =\ 2)} \newline\newline
+  Then which of the following R expressions result in the following
+  output? \newline\newline \texttt{{[}1{]}\ \ 8} \newline\newline (Write
+  `Y' for yes, `N' for no, and `D' or blank for `do not know'. +1 for a
+  correct answer, -1 for a wrong answer and 0 for `D')\newline\newline
+  \_\_\_\_ \texttt{a(8)}\newline\newline \_\_\_\_
+  \texttt{a{[}8{]}}\newline\newline \_\_\_\_
+  \texttt{a(2,4)}\newline\newline \_\_\_\_
+  \texttt{a{[}4,2{]}}\newline\newline \_\_\_\_ \texttt{a(2,4)}
+\end{enumerate}
+
+\vspace{0px}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{101}
+\item
+  Suppose you have data on two variables, \(X\) and \(Y\), in each of
+  \(J\) groups. Let \(\hat{\beta}_j\) represent the vector of
+  coefficients from the least-squares regression ot \(Y\) on \(X\)
+  within the \(j\)th group, \(j = 1, \ldots, J\). \textbf{Prove} that
+  the inverse-variance weighted combination of the within-group
+  estimated coefficients is the same as the vector of coefficients for
+  the least-squares regression using the pooled data. Explain why (a
+  sketch will suffice, no formal argument is needed) the pooled estimate
+  of the slope estimates a combination of the within-group regression
+  slope and the between-group regression slope. \vspace{0px}
+\item
+  Suppose you wish to estimate the relationship between income, \(Y\),
+  and education, \(X\). Because of heteroscedasticity and curvature in
+  the relationship you choose to fit a linear model using the log of
+  \(Y\): \newline\newline
+  \texttt{fit\ \textless{}-\ lm(\ log(Y)\ \textasciitilde{}\ X,\ data)}
+  \newline\newline Write the R code you would use to plot the estimated
+  increase in income associated with an extra year of education as a
+  function of years of education. It is not necessary to include error
+  bars in the plot. \vspace{0px}
+\item
+  Discuss situations when a) it would be important to include a variable
+  that is not significant and b) it would be important to exclude a
+  variable that is highly significant. Give examples of each situation.
+  \vspace{0px}
+\item
+  Discuss how Lord's Paradox illustrates the usefulness of the gain
+  score to test the difference between two treatments in which the
+  response of interest has been measured before and after the
+  application of the treatments but in which treatment assignment has
+  not been randomized. Compare (a) regression of the gain score on the
+  treatment variable with (b) regression of the post-test on the
+  treatment variable using the pre-test as a covariate. Which of the two
+  methods would be better if treatments had been randomly assigned?
+  Discuss why. \vspace{0px}
+\item
+  Consider a mixed model of the form
+  \texttt{lme(\ Y\ \textasciitilde{}\ X,\ data,\ random\ =\ \textasciitilde{}\ 1\ +\ X\textbar{}\ id)}
+  in which there are two observations per cluster and the predictor,
+  \texttt{X}, has the same two values, 0 and 1, in each cluster.
+  Determine whether the variance parametrization of the model is
+  identifiable. \vspace{0px}
+\item
+  A survey of Canadian families yielded average `equity' (i.e.~total
+  owned in real estate, bonds, stocks, etc. minus total owed) of
+  \$48,000. Aggregate government data of the total equity in the
+  Canadian population shows that this figure must be much larger, in
+  fact more than three times as large. Does this show that respondents
+  must tend to dramatically underreport their equity or is there a
+  probable explanation that is consistent with honest reporting by
+  respondents? \vspace{0px}
+\item
+  The output below uses the schizophrenia data in which patients were
+  observed at years 1, 2, 3, 4, 5, and 6 taking one of three drugs:
+  Atypical, Clozapine, Typical each year.
+  \newline\nopagebreak \includegraphics{m4939/drugs.PNG}\newline\nopagebreak Sketch
+  the predicted response as a function of time (with years ranging from
+  0 to 6), for a patient who took Atypical drugs 1/3 of the time and
+  Clozapine 2/3 of the time if they were on Atypical drugs and if they
+  were on Clozapine. On the graph, indicate the numerical value of the
+  intercept and of the slope for each of the two lines. \vspace{0px}
+\item
+  Let Y and X be a numerical variables and let G be a factor. Consider
+  the following models. All but one of these models will produce the
+  same regression coefficient for X or Xr but they will produce
+  different standard errors. Identify the model that produces a
+  different coefficient. Rank the others where you can according to the
+  standard error of the estimated coefficient for X stating which would
+  be equal if any (assume a very large n and ignore the effect of slight
+  differences in degrees of freedom for the error term). Explain your
+  reasoning briefly. \newline\newline \null\quad (A)
+  \texttt{Y\ \textasciitilde{}\ X\ +\ G} \newline \null\quad (B)
+  \texttt{Y\ \textasciitilde{}\ X} \newline \null\quad (C)
+  \texttt{Yr\ \textasciitilde{}\ Xr} where Yr is the residual of Y
+  regressed on G and Xr is the same for X \newline \null\quad (D)
+  \texttt{Y\ \textasciitilde{}\ Xr} \newline \null\quad (E)
+  \texttt{Y\ \textasciitilde{}\ X\ +\ Xh} where Xh is the predictor of X
+  in the regression of X on G \newline \null\quad (F)
+  \texttt{Y\ \textasciitilde{}\ X\ +\ Xh\ +\ Zg} where Zg is a `G-level'
+  numerical variable, i.e.~it has the same value for all observations
+  within any value of G. \newline \vspace{0px}
+\end{enumerate}
+
+\end{document}

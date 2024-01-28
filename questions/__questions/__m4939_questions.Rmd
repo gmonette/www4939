@@ -1,0 +1,333 @@
+---
+title: "MATH 4939 Questions"
+subtitle: ""
+author: ""
+date: ""
+output:
+  pdf_document: default 
+  html_document: default
+---
+
+```{r init, message=FALSE, warning=FALSE, include=FALSE}
+#    latex_engine: pdflatex
+library(spida2)
+library(readxl)
+questionsFile <- 'MATH_4939_questions.xlsx'
+questions <- as.data.frame(read_excel(questionsFile)) 
+
+# questions <- subset(questions, grepl('4939',Week))
+# questions <- subset(questions, grepl('4939',Week))
+
+space_multiplier <- 0
+answers <- FALSE
+
+
+
+library('dplyr')
+# Define a unique number for each separate version; this will set the randomization
+seedNum <- 123  
+set.seed(seedNum)
+#  html_document:
+#    theme: spacelab
+#    keep_md: yes
+#  html_notebook: default
+#  word_document: default
+```
+```{r loadQuestions, message=FALSE, warning=FALSE, include=FALSE}
+# Load questions
+# The csv file should have the following fields: Question, Type, Points, CorrectAnswer
+# For multiple-choice questions, additionally include: Lure1, Lure2, Lure3
+# For questions with an associated image, additionally include: Image
+# Also include any variables that you want to use to define the question order (e.g., Week)
+
+# Organize questions by week
+# Could alternatively use this section to select out questions from a bigger pool using filter
+# questions$randomizer <- sample(nrow(questions))
+# questions %>%
+#  arrange(Week,randomizer) -> questions
+
+# Summary info
+numQs <- nrow(questions)
+totalPoints <- sum(questions$Points)
+
+```
+
+```{r defineFormats, message=FALSE, warning=FALSE, include=FALSE}
+# Define functions for formatting
+
+# For multiple-choice questions, select the best answer. More than one may be somewhat correct, but one answer will be # the “best” or most precise response to the question. For other questions, m
+# If you need more space to answer, write "**OVER**" and continue the answer on the back of the page.
+# One letter-size (8.5" x 11") sheet of paper with formulas and notes (both sides).
+
+cleanq <- function(q, end = '.') {
+  # INSERT IMAGE IF NEEDED
+  qq <- q$Question
+  
+  qq <- sub('IMAGE',paste0('  \n![](',q$Image,')  \n') ,qq) # Insert image
+  qq <- sub('\\.CON\\.','_(continued from previous question)_' ,qq) # Insert image
+  # qq <- sub('[^.?]$', end, qq) # add period
+  qq
+}
+
+Points <- function(p, default = 2) {
+  if(is.na(p)) p <- default
+  if(p==1) ' *(1 point)*' else paste0(' *(',p, ' points)*')
+}
+# no points:
+Points <- function(p, default = 2) ''
+
+# Multiple-choice with up to 6 randomized response options
+formatMC <- function(q,qnum) {
+  cat(qnum,'. ',cleanq(q), Points(q$Points, 2) ,sep='')
+  cat(' \n')
+  cat(' \n')
+  
+  opts <- c(q$CorrectAnswer, q$Lure1, q$Lure2, q$Lure3, q$Lure4, q$Lure5)
+  opts <- opts[!is.na(opts)]
+  opts <- opts[opts != '']
+  opts <- sample(opts)
+  
+  if(any(allota <- opts == 'all of the above')) opts <- c(opts[!allota],'all of the above') 
+  if(any(noneota <- opts == 'none of the above')) opts <- c(opts[!noneota],'none of the above') 
+  optionLetters <- LETTERS[1:length(opts)]
+  correct <- optionLetters[opts == q$CorrectAnswer]
+  
+  for(i in 1:length(opts)) {
+    cat(paste0('    (', optionLetters[i],') ', opts[i],'\n'))
+  }
+
+  if(answers) {
+    cat('\n*Answer:*',  correct,'\n')
+  }
+  return(correct)
+}
+# test
+# zq <- structure(list(Week = NA_integer_, Number = 20L, Type = "multiple-choice", 
+#     Space = NA_integer_, Points = 3L, Question = "If $A$, $B$ and $C$ are independent, which of the following will be equal to $P(A \\cap B \\cap C)$ ", 
+#     CorrectAnswer = "all of the above", Lure1 = "$P(A|B)P(B|C)P(C|A)$", 
+#     Lure2 = "$P(A) P(B) P( C )$", Lure3 = "$P(A | B \\cap C) P(B) P(C)$", 
+#     Lure4 = "none of the above", Lure5 = NA, Image = ""), .Names = c("Week", 
+# "Number", "Type", "Space", "Points", "Question", "CorrectAnswer", 
+# "Lure1", "Lure2", "Lure3", "Lure4", "Lure5", "Image"), row.names = 74L, class = "data.frame")
+# answers <- TRUE
+# formatMC(zq,10)
+
+formatMCa <- function(q,qnum) {
+  if(is.na(q$Points)) q$Points <- 2
+  cat(qnum,'. ',cleanq(q), Points(q$Points, 2) ,sep='')
+  cat(' \n')
+  cat(' \n')
+  
+  options <- c(q$CorrectAnswer,q$Lure1,q$Lure2,q$Lure3)
+  randorder <- sample(4)
+  cat('    (A)',options[randorder[1]])
+  cat('\n')
+  cat('    (B)',options[randorder[2]])
+  cat('\n')
+  cat('    (C)',options[randorder[3]])
+  cat('\n')
+  cat('    (D)',options[randorder[4]])
+  cat('\n')
+  cat('    (E) all of the above')
+  cat('\n')
+
+  optionLetters <- c('A','B','C','D')
+  correct <- optionLetters[which(randorder==1)]
+
+  if(answers) {
+    cat('\n*Answer:*',  correct,'\n')
+  }
+  
+  return(correct)
+}
+formatMCn <- function(q,qnum) {
+  cat(qnum,'. ',cleanq(q), Points(q$Points, 2) ,sep='')
+  cat(' \n')
+  cat(' \n')
+  
+  options <- c(q$CorrectAnswer,q$Lure1,q$Lure2,q$Lure3)
+  randorder <- sample(4)
+  cat('    (A)',options[randorder[1]])
+  cat('\n')
+  cat('    (B)',options[randorder[2]])
+  cat('\n')
+  cat('    (C)',options[randorder[3]])
+  cat('\n')
+  cat('    (D)',options[randorder[4]])
+  cat('\n')
+  cat('    (F) none of the above')
+  cat('\n')
+
+  optionLetters <- c('A','B','C','D')
+  correct <- optionLetters[which(randorder==1)]
+
+  if(answers) {
+    cat('\n*Answer:*',  correct,'\n')
+  }
+  
+  return(correct)
+}
+formatMCan <- function(q,qnum) {
+  cat(qnum,'. ',cleanq(q), Points(q$Points, 2) ,sep='')
+  cat(' \n')
+  cat(' \n')
+  
+  options <- c(q$CorrectAnswer,q$Lure1,q$Lure2,q$Lure3)
+  randorder <- sample(4)
+  cat('    (A)',options[randorder[1]])
+  cat('\n')
+  cat('    (B)',options[randorder[2]])
+  cat('\n')
+  cat('    (C)',options[randorder[3]])
+  cat('\n')
+  cat('    (D)',options[randorder[4]])
+  cat('\n')
+  cat('    (E) all of the above')
+  cat('\n')
+  cat('    (F) none of the above')
+  cat('\n')
+
+  optionLetters <- c('A','B','C','D')
+  correct <- optionLetters[which(randorder==1)]
+  
+  if(answers) {
+    cat('\n*Answer:*',  correct,'\n')
+  }
+
+  return(correct)
+}
+
+# True/ false
+formatTF <- function(q,qnum) {
+  cat(qnum,'. *True or False:* ',cleanq(q),Points(q$Points, 1), sep='')
+  cat('  \t')
+  cat(' Circle one: True / False')
+  cat('  \n')
+
+  correct <- q$CorrectAnswer
+
+  if(answers) {
+    cat('\n*Answer:*',  correct,'\n')
+  }
+  
+  return(correct)
+}
+
+# Short-answer
+formatSA <- function(q,qnum) {
+  cat(qnum,'. ', cleanq(q), Points(q$Points, 3),sep='')
+  if(is.na(space <- q$Space)) space <- 200
+  cat('\n\\vspace{',space * space_multiplier, 'px}\n', sep = '')
+
+  correct <- q$CorrectAnswer
+
+  if(answers && nchar(correct) > 0) {
+    cat('\n*Answer:*\n',  correct,'\n')
+  }
+  
+  return(correct)
+}
+
+
+# Long-answer (same as short-answer but more space to write)
+formatLA <- function(q,qnum) {
+  cat(qnum,'. ',cleanq(q),Points(q$Points, 5),sep='')
+  if(is.na(space <- q$Space)) space <- 400
+  cat('\n\\vspace{',space * space_multiplier,'px}\n', sep = '')
+  
+  correct <- q$CorrectAnswer
+
+  if(answers && nchar(correct) > 0) {
+    cat('\n*Answer:*\n',  correct,'\n')
+  }
+
+    
+  return(correct)
+}
+
+# Numerical answer (for inserting answer box)
+formatNA <- function(q,qnum) {
+  cat(qnum,'. ',cleanq(q),
+      ' Show your work below and write your final answer in the box.',  
+      Points(q$Points, 3),sep='')
+  cat('  \n')
+  cat('![](box.png)',sep='')
+  cat('  \n')
+
+  correct <- q$CorrectAnswer
+
+  if(answers && nchar(correct) > 0) {
+    cat('\n*Answer:*',  correct,'\n')
+  }
+
+  return(correct)
+}
+
+# Image-labels (for inserting image below question)
+formatIL <- function(q,qnum) {
+  cat(qnum,'. ',cleanq(q), Points(q$Points, 3),sep='')
+  cat('  \n')
+  cat('![](',q$Image,')',sep='')
+  cat('  \n')
+
+  correct <- q$CorrectAnswer
+  
+  if(answers && nchar(correct) > 0) {
+    cat('\n*Answer:*\n',  correct,'\n')
+  }
+
+  return(correct)
+}
+
+```
+
+```{r presentQuestions, echo=FALSE, results="asis"}
+
+# Loop through questions
+# presenting them in the appropriate format and storing the correct answers
+correct.all <- character(length=numQs)
+order.all <- integer(length=numQs)
+for (n in c(1:numQs)) {
+  cat('  \n')
+  q <- questions[n,]
+  if (q$Type=="multiple-choice") {
+    correct <- formatMC(q,n)
+  } else if (q$Type=='multiple-choice-a'){
+    correct <- formatMCa(q,n)
+  } else if (q$Type=='multiple-choice-n'){
+    correct <- formatMCn(q,n)
+  } else if (q$Type=='multiple-choice-an'){
+    correct <- formatMCan(q,n)
+  } else if (q$Type=="short-answer") {
+    correct <- formatSA(q,n)
+  } else if (q$Type=="long-answer") {
+    correct <- formatLA(q,n)
+  } else if (q$Type=="T/F") {
+    correct <- formatTF(q,n)
+  } else if (q$Type=="image-labels") {
+    correct <- formatIL(q,n)
+  } else if (q$Type=="numerical-answer")
+    correct <- formatNA(q,n)
+  correct.all[n] <- correct
+  order.all[n] <- n
+}
+```
+
+
+```{r finishUp, echo=FALSE, eval=FALSE}
+# copy to make visible
+
+file.copy('m4939_questions.html','../questions/m4939_questions.html', overwrite = T)
+
+questions$Key <- correct.all
+questions$Order <- order.all
+
+# Simplify the question key
+questions %>%
+  select(Order,Points,Question,CorrectAnswer,Key) -> questions.key
+
+# Write out questions file with key included
+write.csv(questions.key,file=paste0(questionsFile,"_withkey_v",seedNum,".csv"))
+
+```
+
