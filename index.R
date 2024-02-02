@@ -420,3 +420,10 @@ rglwidget()
 #'   - Upload the answer to each question in a single Piazza post (post it as a Piazza 'Note', not as a Piazza 'Question') with the title: "A3 5.1" for the first question, etc.  
 #'   - You can answer the question directly in the posting or by uploading a pdf file and the R script or Rmarkdown script that generated it.
 #'   - When providing help or comments, do so as "followup discussion".
+#' 
+##- Day ?? ------
+#' ## __Day ??__: Friday, February 2
+#' 
+#' - [Regression Review folder](files/Regression_Review)
+#' - [Mixed Models folder](files/Mixed_Models)
+#' 
