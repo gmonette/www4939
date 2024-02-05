@@ -256,10 +256,6 @@ rglwidget()
 #'  - [Multiple Regression in $\beta$-space](files/Regression_Review/Multiple_Regression.pdf)  
 #'  - [Three Basic Theorems](files/Regression_Review/Three_Basic_Theorems.pdf)
 #' 
-#' 
-##+ CURRENT ----
-#' <span id='CURRENT'></span>
-#' 
 ##- Day 8 ------
 #' ## __Day 8__: Wednesday, January 24
 #' 
@@ -421,9 +417,57 @@ rglwidget()
 #'   - You can answer the question directly in the posting or by uploading a pdf file and the R script or Rmarkdown script that generated it.
 #'   - When providing help or comments, do so as "followup discussion".
 #' 
-##- Day ?? ------
-#' ## __Day ??__: Friday, February 2
+##- Day 12 ------
+#' ## __Day 12__: Friday, February 2
 #' 
 #' - [Regression Review folder](files/Regression_Review)
 #' - [Mixed Models folder](files/Mixed_Models)
+#' 
+#' 
+##- Day 13 ------
+#' ## __Day 13__: Monday, February 5
+#' 
+#' - [Regression Review folder](files/Regression_Review)
+#' - [Mixed Models folder](files/Mixed_Models)
+#' 
+##- ### Assignment 4 (teams) ------
+##' ### __Assignment 4__ (teams)
+##' 
+##' Let $N$ be your team member number for the last assignment, comment
+##' on the statements 
+##' whose number $Q$ is equal to $N (mod 6)$ in 
+##' [this file of statements](files/Regression_Review/23+ statements about statistics.html)
+##' related to statistics. Be warned that most of these statements are
+##' fallacious to some degree. To keep things interesting, there might
+##' be one or more correct statements.
+##' 
+##' Elliptical thinking may help you get insights into the correctness of some statements.
+##' 
+##' - __Deadlines__: See the [course description](files/description.html) for the meaning of these deadlines.
+#'     1. Monday, February 12 at noon 
+#'     2. Wednesday, February 15 at 9 pm 
+#'     3. Friday, February 17 at 9 pm
+#' - __IMPORTANT:__ 
+#'   - Upload the answer to each question in a single Piazza post (post it as a Piazza 'Note', not as a Piazza 'Question') with the title: "A4 Statement 1" for the first statement, etc.  
+#'   - You can answer the question directly in the posting or by uploading a pdf file and the R script or Rmarkdown script that generated it.
+#'   - When providing help or comments, do so as "followup discussion".
+#'   - Do not do a separate post for your final answer, just keep editing the original post.
+
+##- ### Assignment 5 (individual) ------
+##' ### __Assignment 5__ (individual)
+#' 
+#' - __Due:__ Monday, February 12 
+#' 
+#' - Do questions 6 and 8 in the [R script to play with Multilevel Models: Lab 1.R](files/Mixed_Models/Lab_1.R)
+#' 
+#' - Upload your work on each question in a separate Piazza post (post it as a Piazza 'Note', not as a Piazza 'Question') 
+#' - with the title: "A4 6" for the first question and "A4 8" for the second.
+#' - Do your work in Rmarkdown scripts (either .R or .Rmd files, it's up to you) and post your script, not the pdf output to Piazza.
+#'   The script should work when someone else runs it in the current version of R.  
+#' - You can get and give help from anyone in the class but please do so in Piazza and you will get credit for it.
+#' - Even if you get help, your code should be your own. Don't copy code from each other.
+#'   
+#' 
+##+ CURRENT ----
+#' <span id='CURRENT'></span>
 #' 
