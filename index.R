@@ -223,9 +223,6 @@ rglwidget()
 #'     value of your choice(s)?
 #' 
 #' __Quiz on Wednesday:__
-#' 
-##+ CURRENT ----
-#' <span id='CURRENT'></span>
 #'  
 ##- Day 5 ------
 #' ## __Day 5__: Wednesday, January 17
@@ -435,7 +432,7 @@ rglwidget()
 ##' 
 ##' Let $N$ be your team member number for the last assignment, comment
 ##' on the statements 
-##' whose number $Q$ is equal to $N (mod 6)$ in 
+##' whose number $Q$ is equal to $N (mod __4__)$ in 
 ##' [this file of statements](files/Regression_Review/23+ statements about statistics.html)
 ##' related to statistics. Be warned that most of these statements are
 ##' fallacious to some degree. To keep things interesting, there might
