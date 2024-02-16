@@ -478,5 +478,6 @@ rglwidget()
 #' - Use the folder __assn_6__ for discussions.
 
 ##+ CURRENT ----
+##+ 
 #' <span id='CURRENT'></span>
 #' 
