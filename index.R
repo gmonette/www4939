@@ -465,6 +465,18 @@ rglwidget()
 #' - Even if you get help, your code should be your own. Don't copy code from each other.
 #'   
 #' 
+##- Day 18 ------
+#' ## __Day 18__: Friday, February 16
+#' 
+#' - [Mixed Models](files/Mixed_Models)
+#' - [Non-Linear Mixed Models](files/Non_linear_mixed_models)
+#' 
+#' 'Voluntary assignment 6':
+#'   
+#' - Work your way through [Lab 2.R](files/Mixed_Models/Lab_2.R)
+#'   - Post questions, problems, discuss answers to questions on Piazza.
+#' - Use the folder __assn_6__ for discussions.
+
 ##+ CURRENT ----
 #' <span id='CURRENT'></span>
 #' 
