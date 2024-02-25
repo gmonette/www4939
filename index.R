@@ -476,8 +476,510 @@ rglwidget()
 #' - Work your way through [Lab 2.R](files/Mixed_Models/Lab_2.R)
 #'   - Post questions, problems, discuss answers to questions on Piazza.
 #' - Use the folder __assn_6__ for discussions.
+#' 
+##+ Day 19 ----
+#' ## __Day 19__: Monday, February 26
+#' 
+#' __Class links:__
+#' 
+#' - [Small hierarchical example comparing pooled, between, within and mixed models](files/Mixed_Models/Hierarchical_Example.pdf)
+#'   - [Mixed Models or Pooled Analysis (rough draft)](files/Mixed_Models/Mixed_Model_or_Pooled_Analysis.pdf)
+#' - [Multilevel Mixed Models](files/Mixed_Models/Hierarchical_Models.pdf)
+#'   - [R script to play with Multilevel Models: Lab 1.R](files/Mixed_Models/Lab_1.R)
+#' - [Non-Linear Mixed Models](files/Non_linear_mixed_models/Non_Linear_Mixed_Models.pdf)
+#' - [Longitudinal Linear Models](files/Mixed_Models/Longitudinal_Models.pdf)
+#' <!-- - [Plotting with Lattice examples](files/Mixed_Models/latticeExtra_examples.R) 
+#'  FIND SOMETHING BETTER
+#' -->
+#'   - [R script to play with Longitudinal Models: Lab 2.R](files/Mixed_Models/Lab_2.R)
+#'     - This is a good examples of why models matter and how the estimated comparisons between
+#'       drugs depend on which potential confounding factors are included in the model. This includes
+#'       longitudinal components such as trends and possible autocorrelation between measurements that are close to
+#'       each other in time. As you had more components the story keeps changing.  
+#' - [Added-Variable Plot (Frisch-Waugh-Lovell Theorem) and the Linear Propensity Score Theorem](files/Regression_Review/Three_Basic_Theorems.pdf)
+#'   - Provides important insights into equivalent models and nearly equivalent models
+#' - [Parametric splines](files/Guide_to_splines_in_spida.pdf)
+#'   - Models that are non-linear in X but linear in parameters.
+#' - [Dealing with Heteroskedasticity](files/Mixed_Models/Dealing_with_Heteroskedasticity.pdf)
+#' 
+##+ ### Assignment 6 (individual) ------
+##' ### __Assignment 6__ (individual)
+#'  
+#' __Due:__ Tuesday, March 6
+#' 
+#' The purpose of this assignment is to give everyone a chance to 
+#' work individually 
+#' with the data for the project in preparation for collaboration
+#' with your team. 
+#'
+#' We will study methods to work with this kind of data over
+#' the next few weeks.
+#'  
+#' The data are contained in an
+#' Excel file at http://blackwell.math.yorku.ca/private/MATH4939_data/ .
+#' Use the
+#' userid and password provided in class. Please do not post the
+#' userid and password in any public posting, e.g. on Piazza.
+#' You may post them in 'Private' posts to your team.
+#' The data should be treated as
+#' confidential and may be used only for the purposes of this course.
+#' 
+#' The data consist of longitudinal volume measurements for
+#' a number of patients being treated after traumatic brain injuries (TBI),
+#' e.g. from car accidents or falls, and similar data from
+#' a number of control subjects without brain injuries.
+#' 
+#' The goal of the study is to 
+#' identify whether some brain structures are subject to a rate of
+#' shrinkage after TBIs (Traumatic Brain Injury) that is greater than the rate 
+#' normally associated
+#' with aging. It is thought that some structures, particularly portions 
+#' of the
+#' hippocampus may be particularly affected after TBI.
+#' 
+#' You will be able to work with this data set as we explore ways of
+#' of working with multilevel and longitudinal data. It's a real data
+#' set with all the flaws that are typical of real data sets.
+#' 
+#' A first task will be to turn the data from a 'wide file' with one
+#' row per subject to a long file with one row per 'occasion'.
+#' Note that variables
+#' with names that end in ’_1’, ’_2’, etc. are longitudinal variables,
+#' i.e. variables measured on different occasions at different points in time. 
+#' 
+#' A good way to transform variable names if they aren't in the right form
+#' is to use substitutions with regular expressions.
+#' 
+#' A good way to transform the data set from 'wide' form to 'long' form
+#' is to use the 'tolong' function in the 'spida2' package but you 
+#' are welcome to use other methods that can be implemented through a
+#' script in R, i.e. not manipulating the data itself.  You might find section 9, 
+#' particularly section 9.4, of the following notes helpful:
+#' 
+#' - [Working with Data (draft)](files/R/Working_with_Data.pdf)
+#' 
+#' Most of
+#' the variables are measures of the volume of components of the brain:
+#'  
+#' - ‘HC’ refers to the hippocampus that has several parts, 
+#' - ‘CC’ to the corpus callosum, 
+#' - ‘GM’ is grey matter, 
+#' - ‘WM’ is white matter, 
+#' - ‘VBR’ is the ventricle to brain ratio. Ventricles are ‘holes’ 
+#'   in your brain that are filled with
+#'   cerebro-spinal fluid so VBR measures how big the holes in your brain are
+#'   compared with the 'solid' matter. If the brain volume shrinks, 
+#'   the total volume
+#'   of the cranium remains the same so VBR goes up. 
+#'   
+#' I hope that you will be curious to know something about these various
+#' parts of the brain and that you will exploit the internet to get
+#' some information.
+#'   
+#' The ids are numerical for
+#' patients with brain injuries and have the form ‘c01’, ‘c02’ etc for control
+#' subjects. The variable ‘date_1’ contains the date of injury and ‘date_2’,
+#' ‘date_3’, etc., the dates on which the corresponding brain scans were
+#' performed. 
+#' 
+#' You might like to have a look at fixing dates
+#' in [Wrangling Messy Spreadsheets into Useable Data](files/Mixed_Models/Messy_data.html#fix-time) 
+#' for some ideas on using dates to extract, for example, the elapsed time
+#' between two dates as a numerical variable. 
+#' 
+#' Plot some key variables: VBR,
+#' CC_TOT, HPC_L_TOT, HPC_R_TOT against elapsed time since injury using
+#' appropriate plots to convey some idea of the general patterns in the data.
+#' Remember that any changes to the data must be done in R. __Do not edit the
+#' Excel file.__ Comment on what you see. Make a table (using a command in R, of
+#' course) showing how many observations are available from each subject. Create
+#' a posting entitled ‘Assignment 6’ to Piazza in which you Upload your
+#' Rmarkdown .R file and the html file it produces. Make it Private to the
+#' instructor until the deadline.
+#'
+#' 
+##+ CURRENT ----
+##+ 
+#' <span id='CURRENT'></span>
+#+ include=FALSE
+knitr::knit_exit()
+#+
+##+ Day 17 ----
+#' ## __Day 17__: Wednesday, February 16 
+#'
+#' __Team today:__ Davidian
+#' 
+#' __Class links:__
+#' 
+#' Continued from last class
+#' 
+#' - [Plotting with Lattice](files/Mixed_Models/latticeExtra_examples.R)
+#' - [Multilevel Mixed Models](files/Mixed_Models/Hierarchical_Models.pdf)
+#' - Updated files are in [this folder](files/Mixed_Models/).
+#' - [R script to play with Multilevel Models: Lab 1.R](files/Mixed_Models/Lab_1.R)
+#' - [Added-Variable Plot (Frisch-Waugh-Lovell Theorem) and the Linear Propensity Score Theorem](files/FWL/Three_Basic_Theorems.pdf)
+#'
+##+ Day 18 ----
+#' ## __Day 18__: Friday, February 18 
+#'
+#' __Team today:__ Efron
+#' 
+#' __Class links:__
+#' 
+#' 
+#' New:
+#' 
+#' - [Mixed Model or Pooled Analysis: What's the Difference (in progress)](files/Mixed_Models/Mixed_Model_or_Pooled_Analysis.pdf)
+#'   - [R script](files/Mixed_Models/Mixed_Model_or_Pooled_Analysis.R)
+#' 
+#' Continued from last class
+#' 
+#' - [Plotting with Lattice](files/Mixed_Models/latticeExtra_examples.R)
+#' - [Multilevel Mixed Models](files/Mixed_Models/Hierarchical_Models.pdf)
+#' - Updated files are in [this folder](files/Mixed_Models/).
+#' - [R script to play with Multilevel Models: Lab 1.R](files/Mixed_Models/Lab_1.R)
+#' - [Added-Variable Plot (Frisch-Waugh-Lovell Theorem) and the Linear Propensity Score Theorem](files/FWL/Three_Basic_Theorems.pdf)
+#'
+#'
+##+ Day 19 ----
+#' ## __Day 19__: Monday, February 28
+#'
+#' __Team Today:__ Since we're meeting in class, there won't be a daily team. Thank
+#' you to all the teams for you participation.
+#' 
+#' __Project Teams:__ Some teams have 3 or fewer active members. We'll have
+#' a discussion on the difficult question of possible reassignments.
+#' 
+#' __Scheduling oral midterm:__ I will put up a link on Piazza to schedule the
+#' oral midterm around noon tomorrow (Tuesday) and will mail notification to everyone.
+#' 
+#' __Class links:__
+#' 
+#' Continued from last class
+#' 
+#' - [Plotting with Lattice](files/Mixed_Models/latticeExtra_examples.R)
+#' - [Multilevel Mixed Models](files/Mixed_Models/Hierarchical_Models.pdf)
+#' - Updated files are in [this folder](files/Mixed_Models/).
+#' - [R script to play with Multilevel Models: Lab 1.R](files/Mixed_Models/Lab_1.R)
+#' - [Added-Variable Plot (Frisch-Waugh-Lovell Theorem) and the Linear Propensity Score Theorem](files/FWL/Three_Basic_Theorems.pdf)
+#'
+#' __Sample questions for the midterm on March 5 and 6:__
+#' 
+#' - Have a look at the following questions from [Assignment 2](questions/m4939_questions_2022.html)
+#'   - Basic R: 8.5, 12.1, 8.18, 8.36 (a) and (b)
+#'   - Answering questions with data: review question 5, be prepared for a
+#'     similar specific question with a possibly different data set and variables.
+#' - Review quiz questions.
+#' - Mixed model theory: In a normal linear mixed model to fit data with two levels, a response variable
+#'   $Y$ and a single level-1 predictor $X$, $k$ clusters of size $n_i, i = 1 ,..., k$.  
+#'   Suppose you use the R command `lme(Y ~ 1 + X, data, random = ~ 1 + X | id)`.
+#'   Using the notation used in class for such a model:
+#'   - Derive $\Var(\hat{\beta}_i)$ and $\Var(\hat{\beta}_i - \beta_i)$ where 
+#'     $\beta_i$ is the 'true' vector
+#'     of coefficients in the $i$th cluster and $\hat{\beta}_i$ is the BLUE
+#'     for $\beta_i$ based on the data in cluster $i$.
+#'   - Discuss which variance is relevant if one is using $\hat{\beta}_i$ to
+#'     make inferences about cluster $i$ or to make inferences about the 
+#'     population from which cluster $i$ is viewed as a sample.
+#' - Gauss-Markov:
+#'   - Use the Generalized Gauss-Markov Theorem to show that if you have two
+#'     uncorrelated estimators, $\hat{\psi}_1$ and $\hat{\psi}_2$ of the same
+#'     unknown parameter $\psi$ then the BLUE using these two estimators 
+#'     is their weighted average using weights proportional to their inverse
+#'     variance. Hint: Consider the expression:
+#'     $$\mat{\hat{\psi}_1 \\ \hat{\psi}_2} = \mat{1\\1} \psi + \mat{\epsilon_1 \\ \epsilon_2}$$
+#'   - Suppose you have two uncorrelated unbiased estimators for a parameter $\psi$. The
+#'     value of the first estimator has variance 25 and value 5, the second
+#'     estimator has variance 16 and value 10. What is the BLUE of $\psi$ 
+#'     using these two estimators and what is its variance?
+#' - Consider a regression of a continuous variable Y on a continuous variable X and a 
+#'   dichotomous factor coded with an indicator variable G. 
+#'   Consider a regression of Y on X and G with:   
+#'   $$Y_i =  \beta_0 + \beta_1 X_i + \epsilon_i , \quad \epsilon_i \sim iid N(0,\sigma^2)$$
+#'   In the multiple regression of Y on X and G both $\hat{\beta}_X$ and $\hat{\beta}_G$ are
+#'   highly significant.  However, in simple regressions `Y ~ X` and  `Y ~ G` 
+#'   neither predictor is significant.    
+#'   Sketch plausible data that could exhibit this phenomenon in data space with axes for X
+#'   and Y and group membership indicated by different characters. Also sketch a 
+#'   plausible confidence ellipses for $(\beta_X, \beta_G)$. 
+#' - The following questions refer to the output below for a mixed model fitted with the 
+#'   full high school math achievement data set. The model uses 
+#'   - SES, 
+#'   - SES.School which is the mean SES in the sample in each school, 
+#'   - ‘female’ which is an individual level indicator variable,  
+#'   - ‘Type’ which is a three-level factor with levels 
+#'     “Coed”, “Girl” and “Boy” with the 
+#'     obvious definition, and 
+#'   - Sector which is a 2-level factor with levels “Catholic” and “Public”. 
+#'   a) Consider two Catholic ‘girl’ schools, one with mean SES = 0 and 
+#'      the other with mean SES = 1. Suppose the values of SES in the former 
+#'      school range from -1 to 1 and in the latter school from 0 to 2. Draw a 
+#'      graph showing the predicted MathAch in these two schools over the 
+#'      range of values of SES in each school. On your graph identify the value 
+#'      and location of the contextual effect of SES, the within school effect of 
+#'      SES and the compositional effect of SES. 
+#'   b) Suppose you were to refit the model without SES.School. What 
+#'      would you expect would happen to the coefficient for SES? Would it 
+#'      stay roughly the same, get bigger or get smaller, or is the change 
+#'      unpredictable? Explain. 
+#'   c) Suppose you want to perform an overall test of the importance of 
+#'      gender in the model, either within schools or between schools. Specify a 
+#'      hypothesis matrix that would perform this test. 
+#'   d) How would you estimate the difference between the predicted math achievement of 
+#'      a boy in a boys’ school versus a girl in a girls’ school. If you suspected 
+#'      that this is affected by the SES of the school, how would you modify the 
+#'      model to test this hypothesis?
+#' 
+#' ![output](files/HS_output.png)       
+#' 
+##+ Day 20 ----
+#' ## __Day 20__: Wednesday, March 2 
+#'
+#' __Class links:__
+#' 
+#' Continued from last class:
+#' 
+#' - [Interpreting Contextual and Compositional Effects](files/Mixed_Models/Interpreting_Contextual_and_Compositional_Effects.pdf)
+#' - Updated files are in [this folder](files/Mixed_Models/).
+#' - [R script to play with Multilevel Models: Lab 1.R](files/Mixed_Models/Lab_1.R)
+#' - [Added-Variable Plot (Frisch-Waugh-Lovell Theorem) and the Linear Propensity Score Theorem](files/FWL/Three_Basic_Theorems.pdf)
+#'
+#' New:
+#' 
+#' - [Longitudinal Models](files/Mixed_Models/Longitudinal_Models.pdf)
+#' - [R script to play with Longitudinal Models: Lab 2.R](files/Mixed_Models/Lab_2.R)
+#' 
+#' 
+##+ Day 21 ----
+#' ## __Day 21__: Friday, March 4 
+#'
+#' __Class links:__
+#' 
+#' - [Longitudinal Models](files/Mixed_Models/Longitudinal_Models.pdf)
+#' - [R script to play with Longitudinal Models: Lab 2.R](files/Mixed_Models/Lab_2.R)
+#' - Updated files are in [this folder](files/Mixed_Models/).
+#' 
+##+ Day 22 ----
+#' ## __Day 22__: Monday, March 7 
+#'
+#' __Class links:__
+#' 
+#' Continued from last class:
+#' 
+#' - [Longitudinal Models](files/Mixed_Models/Longitudinal_Models.pdf)
+#' - [R script to play with Longitudinal Models: Lab 2.R](files/Mixed_Models/Lab_2.R)
+#' - Updated files are in [this folder](files/Mixed_Models/).
+#' 
+##+ Day 23 ----
+#' ## __Day 23__: Wednesday, March 9
+#'
+#' __Class links:__
+#' 
+#' Continued from last class:
+#' 
+#' - [Longitudinal Models](files/Mixed_Models/Longitudinal_Models.pdf)
+#' - [R script to play with Longitudinal Models: Lab 2.R](files/Mixed_Models/Lab_2.R)
+#' - Updated files are in [this folder](files/Mixed_Models/).
+#' 
+##+ Day 24 ----
+#' ## __Day 24__: Friday, March 11 
+#'
+#' __Class links:__
+#' 
+#' __Project:__
+#' 
+#' - Consult the description of the project in the 
+#'   [course description](files/description.html#Course_work_and_grades)
+#' - Each team should now create a post that is private to the team
+#'   entitle 'Project Diary'. Each member of the team should log
+#'   their work on the project by editing this post. You can also
+#'   use it to keep track of 'to do lists' and the progress of
+#'   the project.
+#' - Your task is to study and report on the changes in brain volume
+#'   after traumatic brain injury (TBI), comparing patients with controls
+#'   in order detect whether TBI patients exhibit changes beyond
+#'   what would be expected as a normal consequence of aging.
+#'   Each team should focus on one component of the brain:
+#'   - Anscombe: Ventricular Brain Ratio: VBR
+#'   - Blackwell: Left hippocampus: HC_L_TOT
+#'   - Chen: Right hippocampus: HC_R_TOT
+#'   - Davidian: Anterior corpus callosum: CC_ant  
+#'   - Efron: Posterior corpus callosum: CC_post  
+#' - I will post a calendar for team to schedule a meeting with me
+#'   at some time over the next two weeks.
+#' - The deadline for the finished written materials is the last day of term.
+#' - Presentations will be scheduled during the last 3 classes.
+#' 
+#' __Continued from last class:__
+#' 
+#' - [Longitudinal Models](files/Mixed_Models/Longitudinal_Models.pdf)
+#' - [R script to play with Longitudinal Models: Lab 2.R](files/Mixed_Models/Lab_2.R)
+#' - Updated files are in [this folder](files/Mixed_Models/).
+#' 
+##+ Day 25 ----
+#' ## __Day 25__: Monday, March 14 
+#'
+#' __Continued from last class:__
+#' 
+#' - [Longitudinal Models](files/Mixed_Models/Longitudinal_Models.pdf)
+#' - [R script to play with Longitudinal Models: Lab 2.R](files/Mixed_Models/Lab_2.R)
+#' - Updated files are in [this folder](files/Mixed_Models/).
+#' 
+#' __Possible Quiz Questions for Wednesday:__
+#' 
+#' - Given $\hat{\gamma}$, $\hat{G}$, $\hat{\beta}_i$,
+#'   $\hat{\sigma}^2$ and $(X_i' X_i)^{-1}$, (and maybe 
+#'   $\hat{G}^{-1}$ and $(X_i' X_i)^{-1}$ to ease your
+#'   burden of calculations) calculate the EBLUP for $\beta_i$
+#'   and its estimated variance.
+#' - Given $\hat{G}$ answer questions about estimated variances of the
+#'   cluster regression lines: 
+#'   $\eta = \beta_{0i} + X \beta_{1i}$, such as:
+#'   - find the value of $X$ for which $\Var(\beta_{0i} + X \beta_{1i})$
+#'     is minimized
+#'   - find $\Var(\beta_{0i} + X \beta_{1i})$ generally, and/or 
+#'     for various given values of $X$, e.g. $X=0$.
+#'   - discuss the consequences of using a model for the 2 by 2
+#'     $G$ matrix in which $g_{01}$ is fixed at 0.
+#'   - discuss the consequences of forcing $g_{11} = 0$ (note that
+#'     $G$ must be positive-definite for the 'lme' algorithm
+#'     to work). 
+#' 
+##+ Day 26 ----
+#' ## __Day 26__: Wednesday, March 16 
+#'
+##+ ### Assignment 6 (teams) ------
+##' ### __Assignment 6__ (teams)
+#'  
+#' __Due:__ Wednesday, March 23
+#' 
+#' - Everyone should work their way through ["Lab 2"](files/Mixed_Models/Lab_2.R) individually
+#' - Afterwards, meet as a group and write a summary of your findings with emphasis
+#'   on whether and how the estimation of the relative effectiveness of the three
+#'   drugs differed as you changed the model: e.g. whether you included or not a
+#'   contextual effect for each subject's drug profile, whether you included an
+#'   effect of time and whether you included auto-correlation in time.
+#' - Write a description of reasons why the estimation of the effectiveness of
+#'   drugs could change as it did.
+#'   
+#' __Continued from last class:__
+#' 
+#' - [Longitudinal Models](files/Mixed_Models/Longitudinal_Models.pdf)
+#' - [R script to play with Longitudinal Models: Lab 2.R](files/Mixed_Models/Lab_2.R)
+#' - Updated files are in [this folder](files/Mixed_Models/).
+#' 
+#' __New:__
+#' 
+#' - [Polynomial Splines](files/Guide_to_splines_in_spida.pdf)
+#' - [Non-Linear Mixed Models](files/Mixed_Models/Non_Linear_Mixed_Models.pdf) 
+#' 
+#' 
+##+ Day 27 ----
+#' ## __Day 27__: Friday, March 18
+#'
+#' __Continued:__
+#' 
+#' - [Polynomial Splines](files/Guide_to_splines_in_spida.pdf)
+#' - [Non-Linear Mixed Models](files/Mixed_Models/Non_Linear_Mixed_Models.pdf)
+#'  
+##+ Day 28 ----
+#' ## __Day 28__: Monday, March 21 
+#'
+#' Class cancelled.
+#'
+##+ Day 29 ----
+#' ## __Day 29__: Wednesday, March 23 
+#'
+#' __Continued:__
+#' 
+#' - [Non-Linear Mixed Models](files/Mixed_Models/Non_Linear_Mixed_Models.pdf)
+#'  
+##+ Day 30 ----
+#' ## __Day 30__: Friday, March 25
+#'
+#' __Continued:__
+#' - [Non-Linear Mixed Models](files/Mixed_Models/Non_Linear_Mixed_Models.pdf) 
+#' 
+##+ Day 31 ----
+#' ## __Day 31__: Monday, March 28 
+#'
+#' __Continued:__
+#' - [Non-Linear Mixed Models](files/Mixed_Models/Non_Linear_Mixed_Models.pdf) 
+#'
+#' __New:__
+#'
+#' - [Dealing with Heteroskedasticity](files/Mixed_Models/Dealing_with_Heteroskedasticity.pdf)
+#'   [R script](files/Mixed_Models/Dealing_with_Heteroskedasticity.R)
+#'
+##+ Day 32 ----
+#' ## __Day 32__: Wednesday, March 30
+#'
+#' __New:__
+#' 
+#' - [Causal Review](files/Regression_Review/The_Causal_Zoo.pdf)
+#' - [Lord's Paradox, Gain Scores and Longitudinal Analysis](files/Regression_Review/Lords_Paradox_Gain_scores.pdf)
+#'
+##+ Day 33 ----
+#' ## __Day 33__: Friday, April 1 
+#'
+#' - [Schedule a time for an optional meeting about the project](https://calendly.com/georgesmonette/project-meetings)
+#' - [Schedule a time for your oral test](https://calendly.com/georgesmonette/math-4939-oral-exam)
+#' - [Schedule a slot for your team's presentation](https://calendly.com/georgesmonette/math-4939-project-presentation)
+#' 
+#' __Sample Questions:__
+#' 
+#' - [Sample Questions - 2018](files/MATH_4939_Sample_Final_Exam_Questions.pdf)
+#'   - 1, 4, 5, 6, 7, 9, 10, 11, 14, 15, 16, 17, 18, 19, 20, 21, 22,
+#'     23, 24, 25, 28.
+#'
+##+ Day 34 ----
+#' ## __Day 34__: Monday, April 4
+#'
+#' - [Lord's Paradox, Gain Scores and Longitudinal Analysis](files/Regression_Review/Lords_Paradox_Gain_scores.pdf)
+#' - [Lord's Paradox: A Simulation](files/Regression_Review/Lords_Paradox_A_Simulation.pdf)
+#'   - [R script](files/Regression_Review/Lords_Paradox_A_Simulation.R)
+#' - Identifiability revisited:
+#'   - [Identifiability: Is Your Model Too Big for Your Data](files/Mixed_Models/Identifiability_Is_Your_Model_Too_Big_For_Your_Data.pdf)    
+#'     - [R script](files/Mixed_Models/Identifiability_Is_Your_Model_Too_Big_For_Your_Data.R)    
+#'
+##+ Day 35 ----
+#' ## __Day 35__: Wednesday, April 6 {#CURRENT}
+#' 
+#' __Extra tutorial:__
+#' 
+#' - Tuesday, April 12 at 5 pm at [https://yorku.zoom.us/my/georgesmonette](https://yorku.zoom.us/my/georgesmonette)
+#' 
+#' __More Sample Questions:__
+#' 
+#' - [Sample Questions - 2018](files/MATH_4939_Sample_Final_Exam_Questions.pdf)
+#'   - 1, 4, 5, 6, 7, 9, 10, 11, 14, 15, 16, 17, 18, 19, 20, 21, 22,
+#'     23, 24, 25, 28.
+#' - [Midterm 2020](files/math4939_mt_2020_solutions_2020_02_28.pdf)
+#'   - 5
+#' - [Midterm 2019](files/math4939_mt_2019_solutions.pdf)
+#'   - 1, 2, 3, 4, 8
+#' - [Version of random online exam in 2020](files/Online_Exam_2021_01_24.pdf)   
+#'   - try all the questions
+#'  
+#' # References
+#'   
+#- EXIT ----
+#+ include=FALSE
+knitr::knit_exit()
+
 
 ##+ CURRENT ----
 ##+ 
 #' <span id='CURRENT'></span>
+#'
+#+ include=FALSE
+knitr::knit_exit()
+#'
+#' DO:
+#' - Paik-Agresti
+#' - Causal Graphs: give good summary and exercise
+#' - Interpreting RE
+#' - Identification of RE model
 #' 
+#'
+#+

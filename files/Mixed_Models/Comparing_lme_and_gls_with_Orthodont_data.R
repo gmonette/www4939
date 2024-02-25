@@ -1,4 +1,5 @@
 library(nlme)
+library(spida2)
 d <- Orthodont
 d %>% 
   within(
@@ -32,3 +33,4 @@ pred$fitd2 <- predict(fitd2, newdata = pred, level = 0)
 
 library(latticeExtra)
 xyplot(fitd + fitdg + fitd2 ~ age|Sex, pred,  type = 'l', auto.key = T)
+
