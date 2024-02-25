@@ -65,12 +65,21 @@ options(
 #'    <button type="submit">Go to the current date</button>
 #' </form>
 #' 
-#' <!--
 #' 
 #' <br>
-#' <center>
-#' <font color="#880000" size="5">___Announcement(s):___</font>
-#' </center>
+#' <font color="#CC0000" size="6">___Announcements:___</font>
+#' 
+#' __Sunday: February 25, 2024 at 4:30 pm: Update on the (apparently probable) strike.__
+#' 
+#'  At this stage it seems so unlikely that there won’t be a strike that 
+#'  I am planning on the assumption that it will take place.
+#'  
+#'  Therefore, any forthcoming quizzes, if scheduled while the strike is still unresolved, 
+#'  are cancelled and will be rescheduled.
+#'  
+#'  Our class will meet over Zoom at the usual time at https://yorku.zoom.us/j/93916385398
+#' 
+#' <!--
 #' 
 #' - No announcements so far
 #' 
