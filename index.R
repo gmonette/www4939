@@ -35,7 +35,7 @@
 #     why the link is interesting and providing a critique.
 #   - front row team as before, your participation is much appreciated
 #     and makes a big difference to the lecturer.
-#   - Lescture will be on zomm. Class attendance is expected and participation
+#   - Lecture will be on zomm. Class attendance is expected and participation
 #     in class or via chat, etc, which students can use in class also is encouraged
 #   - make sure speakers not active on your lapttop if you use zoom in class;
 #     a good trick is to plug earbuds in your laptop to avoid deafening feedback
