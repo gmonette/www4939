@@ -15,37 +15,40 @@
 #' \newcommand{\E}{\mathrm{E}}
 #' \newcommand{\Var}{\mathrm{V\:\!\!ar}}
 #' \newcommand{\mat}[1]{\begin{pmatrix}#1\end{pmatrix}}
-#+ include=FALSE 
-# TODO:
-# 
-# - Frist: possible ask list of questions for different students to answer
-#   based on vocabular study.
-#   Idea; Different students use same methodology so those lacking will
-#   get help from others.
-# 
-# - look at notes in Quire for changes to description, e.g.
-#   - require cameras for oral test
-#   - in class 1 hour midterm and 2 hour final if inclass possible, otherwise
-#     a 30 minute oral individually scheduled for both
-#   - weekly quiz, in class on laptop with access to web to equalize
-#     for students not in class
-#   - sould I change to markdown to facilitate citations:
-#   - add reading and sumarizzing a paper
-#   - add contributed links should be accompanied with a note describing
-#     why the link is interesting and providing a critique.
-#   - front row team as before, your participation is much appreciated
-#     and makes a big difference to the lecturer.
-#   - Lecture will be on zomm. Class attendance is expected and participation
-#     in class or via chat, etc, which students can use in class also is encouraged
-#   - make sure speakers not active on your lapttop if you use zoom in class;
-#     a good trick is to plug earbuds in your laptop to avoid deafening feedback
-#     loops
-#   - Team Project: differen students work on different aspects of a problem
-#     and then combine their work into a common project and presentation to
-#     be recorded on Zoom and will be posted for class.
-#   - Two Other teams comment independently??
-# What do do about SAS. Might have time this year due to early start.
-# 
+#' 
+#' <!----
+#' 
+#' TODO:
+#' 
+#' - Frist: possible ask list of questions for different students to answer
+#'   based on vocabular study.
+#'   Idea; Different students use same methodology so those lacking will
+#'   get help from others.
+#' 
+#' - look at notes in Quire for changes to description, e.g.
+#'   - require cameras for oral test
+#'   - in class 1 hour midterm and 2 hour final if inclass possible, otherwise
+#'     a 30 minute oral individually scheduled for both
+#'   - weekly quiz, in class on laptop with access to web to equalize
+#'     for students not in class
+#'   - sould I change to markdown to facilitate citations:
+#'   - add reading and sumarizzing a paper
+#'   - add contributed links should be accompanied with a note describing
+#'     why the link is interesting and providing a critique.
+#'   - front row team as before, your participation is much appreciated
+#'     and makes a big difference to the lecturer.
+#'   - Lecture will be on zoom. Class attendance is expected and participation
+#'     in class or via chat, etc, which students can use in class also is encouraged
+#'   - make sure speakers not active on your lapttop if you use zoom in class;
+#'     a good trick is to plug earbuds in your laptop to avoid deafening feedback
+#'     loops
+#'   - Team Project: differen students work on different aspects of a problem
+#'     and then combine their work into a common project and presentation to
+#'     be recorded on Zoom and will be posted for class.
+#'   - Two Other teams comment independently??
+#' What do do about SAS. Might have time this year due to early start.
+#' 
+#' --->
 #' 
 #+ include=FALSE
 library(knitr)
