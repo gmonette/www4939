@@ -74,6 +74,8 @@ p  # this does the actual plotting
 #' With conditional additive model 
 #'
 fit.additive <- lm(symptoms ~ dose + id, dd)
+summary(fit.additive)
+
 dd$fit.additive <- predict(fit.additive)
   head(dd)      
 p2 <- p + 
@@ -132,5 +134,45 @@ dd$fit.conditional <- predict(fit.conditional)
   p5 <- p4 +
   xyplot(fit.conditional ~ dose, data = dd, groups = id, type = 'l', col = 'blue', lty =1)
 )
+
+#'
+#' Mixed model without contextual variable
+#'
   
+library(nlme)
+
+fit.mixed <- lme(symptoms ~ dose, dd, random = ~ 1 | id)
+summary(fit.mixed)
+summary(fit.additive)
+
+dd$fit.mixed <- predict(fit.mixed, level = 0)
+
+p6 <- p4 + xyplot(fit.mixed ~ dose, data = dd, type = 'l', lwd = 3)
+p6
+pred
+
+dd$dose.m <- with(dd, capply(dose, id, mean))
+fit.contextual <- lme(symptoms ~ dose + dose.m, dd, random = ~ 1| id)
+dd$fit.contextual <- predict(fit.contextual, level = 0)
+
+p6 + xyplot(fit.contextual ~ dose, data = dd, type = 'l', lwd = 3, groups = id)
+
+#'
+#' Hyposkedastic case
+#'
+
+dd$symptoms.adj <- with(dd, symptoms - capply(symptoms, id, mean) + 1.244 * dose_m )
+
+
+(pa1 <- xyplot(symptoms.adj ~ dose, data = dd, type = 'b',  groups = id))
+
+dd$symptoms.adj_m <- with(dd, capply(symptoms.adj, id, mean) )
+pa1 + xyplot(symptoms.adj_m ~ dose_m, data = dd, type = 'b', pch = 16, col = 'black', cex = 2)
+
+fit.mixed.adj <- lme(symptoms.adj ~ dose , dd, random = ~ 1| id)
+summary(fit.mixed.adj)
+
+fit.mixed.adj_m <- lme(symptoms.adj ~ dose + dose.m, dd, random = ~ 1| id)
+summary(fit.mixed.adj_m)
+
 
