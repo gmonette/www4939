@@ -610,6 +610,20 @@ rglwidget()
 #' instructor until the deadline.
 #'
 #' 
+##+ Day ?? ----
+#' ## __Day ??__: Friday, March 8
+#' 
+#' __Project:__
+#' 
+#' - Review the description of the project in the [course description](files/description.html).
+#' - Meet with your team this weekend to choose one outcome variable you would like
+#'   to focus on among VBR, CC_TOT, HPC_L_TOT, HPC_R_TOT, and discuss what
+#'   approach you would like to use to analyze factors that are related to 
+#'   recovery. Prepare a short summary of your plans.
+#' - Schedule a meeting of your team with the instructor by posting a message with your preferred
+#'   30-minute slot on Wednesday, March 13, between 1 pm and 7 pm. Use the folder __project__ and post
+#'   the message to the entire class so teams will know which 30-minute slot other teams have already selected.
+#' 
 ##+ CURRENT ----
 ##+ 
 #' <span id='CURRENT'></span>
