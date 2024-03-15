@@ -36,21 +36,38 @@ library(lattice)
 library(latticeExtra)
 library(latex2exp)
 #'
+#' # Introduction
+#' 
+#' This is an example to illustrate methods to deal with heteroskedasticity. The methods
+#' can be used for 'single-level' for which you would use 'lm' in the absence
+#' of heteroskedasticity, or for mixed models. To allow for heteroskedasticity, 
+#' you can use the 'correlation' argument in functions in the 'nlme' package. 
+#' For single-level models, use the 'gls' function, for linear mixed models,
+#' the 'lme' function, and for non-linear mixed models, the 'nlme' function.
+#' 
+#' All three functions use the 'correlation' argument in the same way.
+#' 
 #' # Generating a data set
 #' 
 #' Pay equity data set for a hypothetical university with two 
 #' faculties: Medicine and Arts with a higher level and 
 #' variance in Medicine vs Arts and a different gender gap
 #' 
+# Starting data frame:
 dd <- expand.grid(Faculty = c("Arts", "Med"), Sex = c("F","M"), n = 1:400)
-set.seed(1233)
+
+# sample(1000000,1)
+set.seed(576530)
 dd <- within(
   dd,
   {
     Age <- 45 + 5 * (Faculty == "Arts") + 5 * (Sex == "M") + 15 * rnorm(n)
+    
     ..esal <- 100 + 20 * (Faculty == 'Med') +
       (4 + .3 *(Sex == "M") + .5 * (Faculty == "Med")) * (Age - 30)
-    ..sdsal <- 10 + 10 * (Faculty == "Med") + .2 * (Age - 30)
+    
+    ..sdsal <- 10 + 10 * (Faculty == "Med") + (.2 + .2 * (Faculty == "Med"))* (Age - 30)
+    
     Base <- ..esal + ..sdsal * rnorm(n)
     keep <- Age > 28 & Age < 80
     ..sdsal <- NULL
@@ -65,7 +82,7 @@ save(dd, file = 'salary.rda')
 #'
 load('salary.rda', verbose = TRUE)
 xqplot(dd)
-xyplot(Base ~ Age | Faculty, dd, groups = Sex,
+xyplot(Base ~ Age | Faculty, dd, groups = Sex, alpha = .5,
        auto.key = T)
 
 fit <- lm(Base ~ Age * Faculty * Sex, dd)
@@ -73,10 +90,12 @@ summary(fit)
 for(i in c(1,2,3,5)) {
    plot(fit, which = i, add.smooth=T, mfcol = c(1,1))
 }
-plot(fit, 1)
-plot(fit, 2)
-plot(fit, 3)
-plot(fit, 5)
+#'
+plot(fit, 1, add.smooth = T)
+plot(fit, 2, add.smooth = T)
+plot(fit, 3, add.smooth = T)
+plot(fit, 5, add.smooth = T)
+#'
 xyplot(resid(fit) ~ fitted(fit)|Faculty * Sex, dd) %>% 
   useOuterStrips
 #'
@@ -132,7 +151,7 @@ xyplot(coef ~ Age | Faculty, wgap,
        upper = wgap$U2,
        subscripts = TRUE) +
   layer(panel.band(...)) +
-  layer(panel.grid(h=-1,v=-1)) +
+  layer_(panel.grid(h=-1,v=-1)) +
   layer(panel.abline(h=0)) 
 #' 
 #' # Models with heterosckedasticity
@@ -165,7 +184,7 @@ xyplot(coef ~ Age | Faculty, wgap2,
        subscripts = TRUE) +
   layer(panel.fit(..., alpha = .2)) +
   layer(panel.abline(h=0)) +
-  layer(panel.grid(h=-1,v=-1)) -> plhet
+  layer_(panel.grid(h=-1,v=-1)) -> plhet
 plhet
 
 xyplot(coef ~ Age | Faculty, wgap, 
@@ -177,10 +196,38 @@ xyplot(coef ~ Age | Faculty, wgap,
        subscripts = TRUE) +
   layer(panel.fit(..., col = 'pink',alpha=.5)) +
   layer(panel.abline(h=0)) +
-  layer(panel.grid(h=-1,v=-1)) -> plnohet
+  layer_(panel.grid(h=-1,v=-1)) -> plnohet
 plnohet
 
-c(plhet, plnohet)
+
+
+
+ylim <- c(-7,17)
+c(
+  update(plhet, ylim = ylim), update(plnohet, ylim = ylim)
+)
+
+#' 
+#' Combining data frames
+#' 
+wgap$type <- 'Homoskedastic'
+wgap2$type <- 'Heteroskedastic'
+
+wgap_combined <- rbind(wgap, wgap2)
+
+xyplot(coef ~ Age | Faculty * type, wgap_combined, 
+       type = 'l', auto.key = list(space='right'),
+       ylab = 'Wage gap (male - female)',
+       ylim = ylim,
+       fit = wgap_combined$coef,
+       lower = wgap_combined$L2,
+       upper = wgap_combined$U2,
+       subscripts = TRUE) +
+  layer(panel.fit(..., col = 'pink',alpha=.5)) +
+  layer(panel.abline(h=0)) +
+  layer_(panel.grid(h=-1,v=-1)) -> cplot
+useOuterStrips(cplot)
+
 #'
 #' __Question:__ Where are the bands wider and where are they narrower when incorporating
 #' heteroskedasticity in the model? Do the patterns you see make sense? Note the blue bands

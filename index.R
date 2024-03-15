@@ -20,7 +20,7 @@
 #' 
 #' TODO:
 #' 
-#' - Frist: possible ask list of questions for different students to answer
+#' - First: possible ask list of questions for different students to answer
 #'   based on vocabular study.
 #'   Idea; Different students use same methodology so those lacking will
 #'   get help from others.
@@ -610,8 +610,8 @@ rglwidget()
 #' instructor until the deadline.
 #'
 #' 
-##+ Day ?? ----
-#' ## __Day ??__: Friday, March 8
+##+ Day 27 ----
+#' ## __Day 27__: Friday, March 8
 #' 
 #' __Project:__
 #' 
@@ -623,7 +623,81 @@ rglwidget()
 #' - Schedule a meeting of your team with the instructor by posting a message with your preferred
 #'   30-minute slot on Wednesday, March 13, between 1 pm and 7 pm. Use the folder __project__ and post
 #'   the message to the entire class so teams will know which 30-minute slot other teams have already selected.
+#'   
+##+ Day 28 ----
+#' ## __Day 28__: Monday, March 11
 #' 
+#' Continuation of day 19
+#' 
+###+ Day 29 ----
+#' ## __Day 29__: Wednesday, March 13
+#' 
+#' __Class links:__
+#' 
+#' Asking meaningful questions + dealing with heteroskedasticity: [pdf](files/Mixed_Models/Dealing_with_Heteroskedasticity.pdf) / [R scripts](files/Mixed_Models/Dealing_with_Heteroskedasticity.R)
+#'
+###+ Day 30 ----
+#' ## __Day 30__: Friday, March 15
+#' 
+#' __Class links:__
+#' 
+#' - [Parametric splines](files/Guide_to_splines_in_spida.pdf)
+#'   - Models that are non-linear in X but linear in parameters.
+#' 
+##+ Day 31 ----
+#' ## __Day 31__: Monday, March 18
+#' 
+#' __Class links:__
+#' 
+#' - [Causal Questions](files/Special_Topics/Causal_Questions.pdf)
+#' - [The Causal Zoo](files/Special_Topics/The_Causal_Zoo.pdf)
+#' 
+#' Sample questions on causality:
+#' 
+#' ![](files/Special_Topics/pix/DAG_1.png){height=20%}
+#' 
+#' @. Consider the linear DAG above and the following models:
+#'    1. `Y ~ X`
+#'    2. `Y ~ X + Z6`
+#'    3. `Y ~ X + Z1`
+#'    4. `Y ~ X + Z1 + Z4`
+#'    5. `Y ~ X + Z1 + Z3`
+#'    6. `Y ~ X + Z3 + Z6`
+#'    7. `Y ~ X + Z1 + Z5`
+#'    8. `Y ~ X`
+#'    
+#'    a) For each of these models discuss briefly whether fitting the model would produce an unbiased estimate of the causal effect of `X`. 
+#'    b) Among the models that provide an unbiased estimate of the causal effect of `X`, order them, 
+#'       to the extent possible from the information in the DAG,
+#'       according to the expected standard deviation of $\hat{\beta}_X$. Briefly state the basis for your ordering.
+#'    c) Are there reasons why you might prefer to use a model that the DAG would identify as having a larger
+#'       standard deviation of $\hat{\beta}_X$?
+#' @. Consider a multiple regression of the form $Y = X_1 \beta_1 + X_2 \beta_2 + \varepsilon$ where
+#'    $\varepsilon \sim N(0, \sigma^2 I)$ and $X_1$, $X_2$ represent blocks of variables such that
+#'    the matrix $[X_1 X_2]$ is of full column rank.    
+#'    
+#'    Prove that the Added Variable Plot for the regression of $Y$ on $X_1$ has the same
+#'    vector of least-squares coefficients as the least-squares coefficients for $X_1$
+#'    in the multiple regression.
+#' @. Consider the following statement:   
+#'    "In a multiple regression, if you add a predictor whose effect is not significant, the
+#'    coefficients of the other predictors should not have changed very much, nor should the p-values
+#'    associated with them."    
+#'    Is this a valid statement? If so, discuss why, illustrating your answer with 
+#'    appropriate figures.
+#' @. Are there any situations in which it would be important to drop a term
+#'    in a model although its coefficient is highly statistically significant? 
+#'    Discuss the circumstances, if any, in which this would be true, and
+#'    the consequences of including or excluding the variable in question.
+#' @. Are there any situations in which it would be important to include a term
+#'    in a model although its coefficient is not statistically significant? 
+#'    Discuss the circumstances, if any, in which this would be true, and
+#'    the consequences of including or excluding the variable in question.
+#'    Note that this issue can arise in a number of contexts: satisfying the 
+#'    the principle or marginality and including a variable to ensure that
+#'    the estimate of another variable is unbiased, notably in the context
+#'    of causal estimation.
+#'  
 ##+ CURRENT ----
 ##+ 
 #' <span id='CURRENT'></span>
