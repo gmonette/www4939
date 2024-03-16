@@ -643,6 +643,7 @@ rglwidget()
 #' 
 #' - [Parametric splines](files/Guide_to_splines_in_spida.pdf)
 #'   - Models that are non-linear in X but linear in parameters.
+#'   - Example shown in class: [R script](files/Mixed_Models/Parametric_spline_and_Fourier_series_example.R) / [pdf](files/Mixed_Models/Parametric_spline_and_Fourier_series_example.pdf)
 #' 
 ##+ Day 31 ----
 #' ## __Day 31__: Monday, March 18
